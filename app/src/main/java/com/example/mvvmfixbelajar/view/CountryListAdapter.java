@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvmfixbelajar.R;
 import com.example.mvvmfixbelajar.model.CountryModel;
+import com.example.mvvmfixbelajar.model.Utils;
 
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class CountryListAdapter extends RecyclerView.Adapter<CountryListAdapter.
         void bind(CountryModel countryModel){
             name.setText(countryModel.getCountryName());
             capital.setText(countryModel.getCapital());
-
+            Utils.loadImage(imgFlag,countryModel.getFlag(), Utils.getProgressDrawable(imgFlag.getContext()));
         }
     }
 }

@@ -21,7 +21,7 @@ public class CountriesService {
 
 
     public  static CountriesService getInstance(){
-        if (instance != null){
+        if (instance == null){
             instance = new CountriesService();
         }
         return instance;
