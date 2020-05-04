@@ -3,10 +3,14 @@ package com.example.mvvmfixbelajar.viewmodel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.mvvmfixbelajar.di.DaggerApiComponent;
+import com.example.mvvmfixbelajar.model.CountriesApi;
 import com.example.mvvmfixbelajar.model.CountriesService;
 import com.example.mvvmfixbelajar.model.CountryModel;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -23,9 +27,18 @@ public class ListViewModel extends ViewModel {
         fetchCountries();
     }
 
-    private CountriesService countriesService = CountriesService.getInstance();
+    @Inject
+    public CountriesService countriesService;
+
+   // private CountriesService countriesService = CountriesService.getInstance();
 
     private CompositeDisposable disposable = new CompositeDisposable();
+
+
+    public  ListViewModel() {
+        super();
+        DaggerApiComponent.create().injectCountriesService(this);
+    }
 
 
 
